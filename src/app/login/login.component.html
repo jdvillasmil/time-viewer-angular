@@ -1,0 +1,28 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>Iniciar Sesión</h2>
+    <form>
+      <input
+        type="text"
+        placeholder="Usuario"
+        [(ngModel)]="username"
+        name="username"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+      <button type="submit" (click)="handleSubmit()">Login</button>
+    </form>
+    <p>
+      ¿No tienes una cuenta?
+      <a href="/register">Regístrate aquí</a>
+    </p>
+    <p *ngIf="success" class="success">{{ success }}</p>
+    <p *ngIf="error" class="error">{{ error }}</p>
+  </div>
+</div>
