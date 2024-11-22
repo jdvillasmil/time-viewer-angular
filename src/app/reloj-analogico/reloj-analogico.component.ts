@@ -7,31 +7,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reloj-analogico.component.css'],
 })
 export class RelojAnalogicoComponent implements OnInit {
-  hourHand: { x2: number; y2: number } = { x2: 50, y2: 30 };
-  minuteHand: { x2: number; y2: number } = { x2: 50, y2: 20 };
-  secondHand: { x2: number; y2: number } = { x2: 50, y2: 10 };
+  hour: number = 0;
+  minute: number = 0;
+  second: number = 0;
+  hourAngle: number = 0;
+  minuteAngle: number = 0;
+  secondAngle: number = 0;
 
   ngOnInit(): void {
-    this.updateClockHands();
-    setInterval(() => this.updateClockHands(), 1000);
+    this.updateClock();
+    setInterval(() => this.updateClock(), 1000);
   }
 
-  updateClockHands(): void {
+  updateClock(): void {
     const now = new Date();
-    const hours = now.getHours() % 12;
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    this.hourHand = this.calculateHandPosition(hours * 30, 20); // Hour hand
-    this.minuteHand = this.calculateHandPosition(minutes * 6, 30); // Minute hand
-    this.secondHand = this.calculateHandPosition(seconds * 6, 40); // Second hand
+    this.hour = now.getHours();
+    this.minute = now.getMinutes();
+    this.second = now.getSeconds();
+    this.calculateAngles();
   }
 
-  calculateHandPosition(angle: number, length: number): { x2: number; y2: number } {
-    const radians = (angle * Math.PI) / 180;
-    return {
-      x2: 50 + length * Math.sin(radians),
-      y2: 50 - length * Math.cos(radians),
-    };
+  adjustTime(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const [hours, minutes] = input.value.split(':').map(Number);
+
+    if (!isNaN(hours) && !isNaN(minutes)) {
+      this.hour = hours % 12; // Ajustamos a formato de 12 horas
+      this.minute = minutes;
+      this.second = 0; // Reiniciamos los segundos al ajustar manualmente
+      this.calculateAngles();
+    }
+  }
+
+  calculateAngles(): void {
+    this.hourAngle = (this.hour % 12) * 30 + this.minute * 0.5; // Cada hora son 30° + ajuste por minutos
+    this.minuteAngle = this.minute * 6 + this.second * 0.1; // Cada minuto son 6° + ajuste por segundos
+    this.secondAngle = this.second * 6; // Cada segundo son 6°
   }
 }
