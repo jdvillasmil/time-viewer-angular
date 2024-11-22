@@ -1,0 +1,28 @@
+<div class="menu-relojes-container">
+    <!-- Sidebar menu -->
+    <div class="menu">
+      <h2>Selecciona un Reloj</h2>
+      <ul>
+        <li>
+          <button (click)="selectClock('reloj-digital')">Reloj Digital</button>
+        </li>
+        <li>
+          <button (click)="selectClock('reloj-analogico')">Reloj Analógico</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Main display -->
+    <div class="reloj-display">
+      <!-- Popup container -->
+      <div *ngIf="selectedClock === 'reloj-digital'" class="reloj-container">
+        <h3>Reloj Digital</h3>
+        <app-reloj-digital></app-reloj-digital>
+      </div>
+      <div *ngIf="selectedClock === 'reloj-analogico'" class="reloj-container">
+        <h3>Reloj Analógico</h3>
+        <app-reloj-analogico></app-reloj-analogico>
+      </div>
+    </div>
+  </div>
+  
