@@ -1,0 +1,70 @@
+.reloj-binario-container {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  .led-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .binary-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #34495e;
+  }
+  
+  .binary-time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2980b9;
+    margin-right: 10px;
+  }
+  
+  .leds {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .led {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .led.on {
+    background-color: #27ae60;
+  }
+  
+  label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    font-size: 1rem;
+    color: #2c3e50;
+  }
+  
+  input[type='time'] {
+    padding: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
