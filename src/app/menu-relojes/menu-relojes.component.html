@@ -9,6 +9,9 @@
         <li>
           <button (click)="selectClock('reloj-analogico')">Reloj Analógico</button>
         </li>
+        <li>
+          <button (click)="selectClock('reloj-binario')">Reloj Binario</button>
+        </li>
       </ul>
     </div>
   
@@ -16,12 +19,14 @@
     <div class="reloj-display">
       <!-- Popup container -->
       <div *ngIf="selectedClock === 'reloj-digital'" class="reloj-container">
-        <h3>Reloj Digital</h3>
         <app-reloj-digital></app-reloj-digital>
       </div>
       <div *ngIf="selectedClock === 'reloj-analogico'" class="reloj-container">
-        <h3>Reloj Analógico</h3>
         <app-reloj-analogico></app-reloj-analogico>
+      </div>
+      <div *ngIf="selectedClock === 'reloj-binario'" class="reloj-container">
+
+        <app-reloj-binario></app-reloj-binario>
       </div>
     </div>
   </div>
