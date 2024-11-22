@@ -1,15 +1,11 @@
-<div class="reloj-digital-container">
-    <h3>Reloj Digital</h3> <!-- Título del reloj -->
-    <div class="time-display">
-      {{ currentTime | date: 'h:mm:ss a' }}
-    </div>
-    <div class="time-adjust">
-      <label for="adjust-time">Ajustar Hora:</label>
-      <input
-        id="adjust-time"
-        type="time"
-        (change)="adjustTime($event)"
-      />
-    </div>
-  </div>
-  
+<div class="reloj-digital">
+  <h1>Reloj Digital</h1>
+  <h2>{{ hours | number: '2.0' }}:{{ minutes | number: '2.0' }}:{{ seconds | number: '2.0' }}</h2>
+
+  <label for="time-adjust">Ajustar Hora:</label>
+  <input
+    id="time-adjust"
+    type="time"
+    (change)="adjustTime($event)"
+  />
+</div>

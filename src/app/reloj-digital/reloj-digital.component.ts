@@ -4,32 +4,40 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-reloj-digital',
   standalone: true,
+  imports: [CommonModule], // Importamos CommonModule para usar pipes como "number"
   templateUrl: './reloj-digital.component.html',
   styleUrls: ['./reloj-digital.component.css'],
-  imports: [CommonModule], // Importa CommonModule para usar el pipe `date`
 })
 export class RelojDigitalComponent {
-  currentTime: Date = new Date(); // Inicializa con la hora actual
+  hours: number = new Date().getHours();
+  minutes: number = new Date().getMinutes();
+  seconds: number = new Date().getSeconds();
 
-  constructor() {
-    this.updateClock();
-  }
-
-  // Método para actualizar el reloj cada segundo
-  updateClock() {
+  ngOnInit() {
     setInterval(() => {
-      this.currentTime = new Date(this.currentTime.getTime() + 1000);
+      this.seconds++;
+      if (this.seconds === 60) {
+        this.seconds = 0;
+        this.minutes++;
+      }
+      if (this.minutes === 60) {
+        this.minutes = 0;
+        this.hours++;
+      }
+      if (this.hours === 24) {
+        this.hours = 0;
+      }
     }, 1000);
   }
 
-  // Método para ajustar la hora
   adjustTime(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.value) {
-      const [hours, minutes] = input.value.split(':').map(Number);
-      const updatedTime = new Date(this.currentTime);
-      updatedTime.setHours(hours, minutes, 0); // Ajustar horas y minutos
-      this.currentTime = updatedTime;
+    const [hours, minutes] = input.value.split(':').map(Number);
+
+    if (!isNaN(hours) && !isNaN(minutes)) {
+      this.hours = hours;
+      this.minutes = minutes;
+      this.seconds = 0; // Reinicia los segundos al ajustar la hora
     }
   }
 }
