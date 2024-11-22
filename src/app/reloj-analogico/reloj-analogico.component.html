@@ -1,0 +1,34 @@
+<div class="analog-clock">
+    <svg viewBox="0 0 100 100" class="clock-face">
+      <!-- Clock border -->
+      <circle cx="50" cy="50" r="48" class="clock-border" />
+      
+      <!-- Hour hand -->
+      <line
+        x1="50"
+        y1="50"
+        [attr.x2]="hourHand.x2"
+        [attr.y2]="hourHand.y2"
+        class="hour-hand"
+      />
+      
+      <!-- Minute hand -->
+      <line
+        x1="50"
+        y1="50"
+        [attr.x2]="minuteHand.x2"
+        [attr.y2]="minuteHand.y2"
+        class="minute-hand"
+      />
+      
+      <!-- Second hand -->
+      <line
+        x1="50"
+        y1="50"
+        [attr.x2]="secondHand.x2"
+        [attr.y2]="secondHand.y2"
+        class="second-hand"
+      />
+    </svg>
+  </div>
+  

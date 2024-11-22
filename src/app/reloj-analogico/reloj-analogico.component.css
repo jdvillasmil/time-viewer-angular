@@ -1,0 +1,35 @@
+.analog-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .clock-face {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .clock-border {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+  }
+  
+  .hour-hand {
+    stroke: black;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+  
+  .minute-hand {
+    stroke: black;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  
+  .second-hand {
+    stroke: red;
+    stroke-width: 1;
+    stroke-linecap: round;
+  }
+  
