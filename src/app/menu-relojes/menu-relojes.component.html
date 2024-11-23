@@ -1,33 +1,24 @@
 <div class="menu-relojes-container">
-    <!-- Sidebar menu -->
-    <div class="menu">
-      <h2>Selecciona un Reloj</h2>
-      <ul>
-        <li>
-          <button (click)="selectClock('reloj-digital')">Reloj Digital</button>
-        </li>
-        <li>
-          <button (click)="selectClock('reloj-analogico')">Reloj Analógico</button>
-        </li>
-        <li>
-          <button (click)="selectClock('reloj-binario')">Reloj Binario</button>
-        </li>
-      </ul>
-    </div>
-  
-    <!-- Main display -->
-    <div class="reloj-display">
-      <!-- Popup container -->
-      <div *ngIf="selectedClock === 'reloj-digital'" class="reloj-container">
-        <app-reloj-digital></app-reloj-digital>
-      </div>
-      <div *ngIf="selectedClock === 'reloj-analogico'" class="reloj-container">
-        <app-reloj-analogico></app-reloj-analogico>
-      </div>
-      <div *ngIf="selectedClock === 'reloj-binario'" class="reloj-container">
+  <!-- Sidebar menu -->
+  <div class="menu">
+    <h2>Selecciona un Reloj</h2>
+    <ul>
+      <li *ngFor="let reloj of relojes">
+        <button (click)="selectClock(reloj.key)">{{ reloj.name }}</button>
+      </li>
+    </ul>
+  </div>
 
-        <app-reloj-binario></app-reloj-binario>
-      </div>
+  <!-- Main display -->
+  <div class="reloj-display">
+    <div class="reloj-container" *ngIf="selectedClock">
+      <ng-container [ngSwitch]="selectedClock">
+        <app-reloj-digital *ngSwitchCase="'reloj-digital'"></app-reloj-digital>
+        <app-reloj-analogico *ngSwitchCase="'reloj-analogico'"></app-reloj-analogico>
+        <app-reloj-binario *ngSwitchCase="'reloj-binario'"></app-reloj-binario>
+        <app-reloj-hexadecimal *ngSwitchCase="'reloj-hexadecimal'"></app-reloj-hexadecimal>
+        <app-reloj-palabras *ngSwitchCase="'reloj-palabras'"></app-reloj-palabras>
+      </ng-container>
     </div>
   </div>
-  
+</div>
