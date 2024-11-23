@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-reloj-digital',
@@ -13,22 +14,20 @@ export class RelojDigitalComponent {
   minutes: number = new Date().getMinutes();
   seconds: number = new Date().getSeconds();
 
-  ngOnInit() {
-    setInterval(() => {
-      this.seconds++;
-      if (this.seconds === 60) {
-        this.seconds = 0;
-        this.minutes++;
-      }
-      if (this.minutes === 60) {
-        this.minutes = 0;
-        this.hours++;
-      }
-      if (this.hours === 24) {
-        this.hours = 0;
-      }
-    }, 1000);
-  }
+  clock$ = interval(1_000).subscribe(() => {
+    this.seconds++;
+    if (this.seconds === 60) {
+      this.seconds = 0;
+      this.minutes++;
+    }
+    if (this.minutes === 60) {
+      this.minutes = 0;
+      this.hours++;
+    }
+    if (this.hours === 24) {
+      this.hours = 0;
+    }
+  })
 
   adjustTime(event: Event) {
     const input = event.target as HTMLInputElement;
